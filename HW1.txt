@@ -1,0 +1,25 @@
+#problem 1
+
+select name, population, area from World 
+WHERE area>=3000000 OR population >= 25000000
+
+#problem 2
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+RETURN(
+select distinct(salary) from(
+select salary, 
+dense_rank() over(order by salary desc) as r from Employee) as a
+where r=N);
+end
+
+#problem 3
+
+ith cte as (
+    select min(id) id
+    from person
+    group by email
+)
+
+delete from person where id not in (select id from cte)
