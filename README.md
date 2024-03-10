@@ -28,4 +28,4 @@ from person
 )
 
 delete from cte
-where rnk >1
+where rnk >1;
