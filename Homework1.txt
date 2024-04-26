@@ -1,0 +1,25 @@
+1. Problem 1: Big Countries 
+
+select name, population, area
+from world
+where area >= 3000000 or population >= 25000000
+
+2. Problem 2: Nth Highest Salary 
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+    DECLARE M int;
+    SET M = N-1;
+    RETURN (
+            select distinct salary
+            from employee
+            order by salary desc
+            limit M,1
+  );
+END
+
+3. Problem 3: Delete Duplicate Emails 
+
+delete p
+from Person p, person a
+where p.email = a.email and p.id>a.id
