@@ -1,0 +1,9 @@
+/*problem2: solution for Nth Highest Salary*/
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  RETURN (
+ with cte as
+ (select *, dense_rank()over (order by salary desc) as Highest_sal from Employee )
+ select distinct(salary) from cte where Highest_sal =N
+  );
+END
