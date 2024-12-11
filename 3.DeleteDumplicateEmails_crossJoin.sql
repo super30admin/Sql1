@@ -1,0 +1,6 @@
+# Write your MySQL query statement below
+
+DELETE P2 FROM PERSON P2
+CROSS JOIN PERSON P1
+WHERE P1.EMAIL = P2.EMAIL 
+AND P2.ID > P1.ID
