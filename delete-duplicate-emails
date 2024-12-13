@@ -1,0 +1,1 @@
+delete a from person a cross join person b where a.email = b.email and a.id >b.id 
