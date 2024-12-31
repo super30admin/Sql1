@@ -1,0 +1,26 @@
+Q1. 
+# Write your MySQL query statement below
+select  name, area, population from World
+where 
+area >= 3000000
+or 
+population >= 25000000
+
+Q2.
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  RETURN (
+      # Write your MySQL query statement below.
+    with CTE as (
+        SELECT *, DENSE_RANK()
+        Over (Order By salary Desc) 
+        as RNK From Employee
+        )
+        SELECT DISTINCT IFNULL (salary, Null)
+        From CTE where RNK = N
+    
+  );
+END
+
+Q3. 
+
