@@ -1,0 +1,32 @@
+# Problem Rank Scores
+
+# Write your MySQL query statement below
+select score, DENSE_RANK() OVER(ORDER BY score desc) as 'rank' from Scores;
+
+
+
+
+ # Problem Exchange Seats
+
+ Solution:
+select(
+    case 
+        when mod(id,2)!=0 and id = cnts then id
+        when mod(id,2)!=0 and id !=cnts then id+1
+        else id-1
+    end
+) as 'id', student from seat, (select count(*) as cnts from Seat) as seat_counts order by id;
+
+
+# Tree Problem
+
+select id, if(ISNULL(p_id),'Root',if(id in(select distinct p_id from Tree),'Inner','Leaf')) as 'Type' from Tree;
+
+
+# Department top 3 Salaries
+
+with cte as (
+    select d.name as 'Department', e.name as 'Employee', e.salary as 'Salary', DENSE_RANK() OVER (partition by e.departmentId ORDER BY e.salary desc) as 'salary_rank' from  employee e left join department d on e.departmentId=d.id
+     )
+
+select Department, Employee, Salary from cte where salary_rank<=3;

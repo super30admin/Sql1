@@ -1,0 +1,26 @@
+# Write your MySQL query statement below
+
+# Big Countries Solution
+
+select name, population, area from World where area >='3000000' or population >='25000000';
+
+# Nth Highest Salary
+
+# Nth Highest Salary
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  RETURN (
+      # Write your MySQL query statement below.
+WITH CTE AS(
+    select *,DENSE_RANK() OVER (ORDER BY salary DESC) as rnk from Employee
+)
+SELECT distinct (ifnull(salary,null)) from CTE where rnk = N
+  );
+END
+
+
+
+# Delete Duplicate Emails 
+
+delete p1 from Person P1 cross join Person p2 where p1.email =p2.email and p1.id > p2.id;
